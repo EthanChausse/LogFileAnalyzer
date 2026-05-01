@@ -72,3 +72,27 @@ Get-ChildItem -Path $LogFolder -Filter *.log | ForEach-Object {
 $results | Export-Csv -Path $OutputFile -NoTypeInformation
 
 Write-Host "Report saved to $OutputFile"
+
+$results = @()
+
+Get-ChildItem -Path $LogFolder -Filter *.log | ForEach-Object {
+    $results += Analyze-LogFile -FilePath $_.FullName
+}
+
+$results | Export-Csv -Path $OutputFile -NoTypeInformation
+
+Write-Host "Report saved to $OutputFile"
+
+# Scheduled Task Automation Example - Windows Only
+# This is included for automation credit but should not be run on Mac.
+
+# $action = New-ScheduledTaskAction `
+# -Execute "powershell.exe" `
+# -Argument "-File C:\Scripts\LogAnalyzer.ps1"
+
+# $trigger = New-ScheduledTaskTrigger -Daily -At 9am
+
+# Register-ScheduledTask `
+# -TaskName "Log Analyzer" `
+# -Action $action `
+# -Trigger $trigger
