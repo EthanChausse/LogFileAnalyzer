@@ -86,13 +86,14 @@ Write-Host "Report saved to $OutputFile"
 # Scheduled Task Automation Example - Windows Only
 # This is included for automation credit but should not be run on Mac.
 
-# $action = New-ScheduledTaskAction `
-# -Execute "powershell.exe" `
-# -Argument "-File C:\Scripts\LogAnalyzer.ps1"
+$action = New-ScheduledTaskAction `
+-Execute "powershell.exe" `
+-Argument "-File C:\Scripts\LogAnalyzer.ps1"
 
-# $trigger = New-ScheduledTaskTrigger -Daily -At 9am
+$trigger = New-ScheduledTaskTrigger -Daily -At 9am
 
 # Register-ScheduledTask `
 # -TaskName "Log Analyzer" `
 # -Action $action `
 # -Trigger $trigger
+# Log Analyzer script for scanning log files and creating a CSV report
