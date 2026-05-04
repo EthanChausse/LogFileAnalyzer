@@ -73,6 +73,7 @@ $results | Export-Csv -Path $OutputFile -NoTypeInformation
 
 Write-Host "Report saved to $OutputFile"
 
-git add scripts/LogAnalyzer.ps1
-git commit -m "Resolved merge conflict"
-git push
+$action = New-ScheduledTaskAction -Execute "pwsh.exe" -Argument "-File `"$PWD\LogFileAnalyzer.ps1`""
+$trigger = New-ScheduledTaskTrigger -Daily -At 9am
+Register-ScheduledTask -TaskName "LogFileAnalyzer" -Action $action -Trigger $trigger -Force
+
