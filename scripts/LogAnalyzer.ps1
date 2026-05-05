@@ -73,7 +73,8 @@ $results | Export-Csv -Path $OutputFile -NoTypeInformation
 
 Write-Host "Report saved to $OutputFile"
 
-$action = New-ScheduledTaskAction -Execute "pwsh.exe" -Argument "-File `"$PWD\LogFileAnalyzer.ps1`""
-$trigger = New-ScheduledTaskTrigger -Daily -At 9am
-Register-ScheduledTask -TaskName "LogFileAnalyzer" -Action $action -Trigger $trigger -Force
+# $action = New-ScheduledTaskAction -Execute "pwsh.exe" -Argument "-File `"$PWD\LogFileAnalyzer.ps1`""
+# $trigger = New-ScheduledTaskTrigger -Daily -At 9am
+# Register-ScheduledTask -TaskName "LogFileAnalyzer" -Action $action -Trigger $trigger -Force
+
 
